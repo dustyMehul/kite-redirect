@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Back to the dashboard…</title>
+<style>
+  body { font: 18px system-ui, sans-serif; background: #000; color: #ece8e1; display: grid; place-items: center; min-height: 100vh; margin: 0; text-align: center; }
+  a { color: #e8b86b; }
+</style>
+</head>
+<body>
+<p id="msg">Taking you back to the dashboard…</p>
+<script>
+  // Zerodha (Kite Connect) only allows https redirect URLs; the dashboard runs
+  // on plain http on the home Wi-Fi. This page forwards the login result there.
+  // The request_token in the URL is single-use and useless without the API
+  // secret, which only the dashboard has. Nothing is stored or sent elsewhere.
+  var target = "http://192.168.29.245:8080/api/kite/callback" + location.search;
+  document.getElementById("msg").innerHTML =
+    'Taking you back to the dashboard… <br><br><a href="' + target + '">Tap here if nothing happens</a><br><small>(you need to be on the home Wi-Fi)</small>';
+  location.replace(target);
+</script>
+</body>
+</html>
